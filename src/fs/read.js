@@ -1,5 +1,16 @@
+import path from "path";
+import {FS_ERROR, isPathPresent} from "./common.js";
+import fs from "fs/promises";
+
 const read = async () => {
-    // Write your code here 
+    const sourceFolder = path.join('files', 'fileToRead.txt');
+
+    const accessSource = await isPathPresent(sourceFolder);
+    if (!accessSource) {
+        throw Error(FS_ERROR);
+    }
+
+    console.log(await fs.readFile(sourceFolder, 'utf8'));
 };
 
 await read();
