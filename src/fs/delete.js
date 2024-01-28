@@ -1,9 +1,9 @@
 import path from "path";
-import {FS_ERROR, isPathPresent} from "./common.js";
+import {FS_ERROR, getDirPath, isPathPresent} from "./common.js";
 import fs from "fs/promises";
 
 const remove = async () => {
-    const sourceFolder = path.join('files', 'fileToRemove.txt');
+    const sourceFolder = path.join(getDirPath(import.meta.url), 'files', 'fileToRemove.txt');
 
     const accessSource = await isPathPresent(sourceFolder);
     if (!accessSource) {

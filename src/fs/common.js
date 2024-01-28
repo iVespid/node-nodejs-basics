@@ -1,5 +1,6 @@
 import fs from "fs/promises";
-import path from "path";
+import path, {dirname} from "path";
+import {fileURLToPath} from "url";
 
 export async function copyDirectory(from, to) {
     const sourceContent = await fs.readdir(from);
@@ -25,4 +26,11 @@ export async function isPathPresent(path) {
     }
 }
 
+export function getFilePath(importMetaUrl) {
+    return fileURLToPath(importMetaUrl);
+}
+
+export function getDirPath(importMetaUrl) {
+    return dirname(fileURLToPath(importMetaUrl));
+}
 export const FS_ERROR = `FS operation failed`

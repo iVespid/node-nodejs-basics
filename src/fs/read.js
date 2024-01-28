@@ -1,9 +1,9 @@
 import path from "path";
-import {FS_ERROR, isPathPresent} from "./common.js";
+import {FS_ERROR, getDirPath, isPathPresent} from "./common.js";
 import fs from "fs/promises";
 
 const read = async () => {
-    const sourceFolder = path.join('files', 'fileToRead.txt');
+    const sourceFolder = path.join(getDirPath(import.meta.url),'files', 'fileToRead.txt');
 
     const accessSource = await isPathPresent(sourceFolder);
     if (!accessSource) {
